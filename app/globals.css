@@ -1,0 +1,505 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* RGB values for accent colors to use in rgba() */
+:root {
+  /* White */
+  --color-white-r: 255;
+  --color-white-g: 255;
+  --color-white-b: 255;
+  
+  /* Grey - Cyan-Grey 500 */
+  --color-grey-r: 113;
+  --color-grey-g: 134;
+  --color-grey-b: 150;
+  
+  /* Black */
+  --color-black-r: 33;
+  --color-black-g: 33;
+  --color-black-b: 33;
+  
+  /* Cyan: #0FFFF8 */
+  --color-accent-cyan-r: 15;
+  --color-accent-cyan-g: 255;
+  --color-accent-cyan-b: 248;
+  
+  /* Yellow: #F6CA46 */
+  --color-accent-yellow-r: 246;
+  --color-accent-yellow-g: 202;
+  --color-accent-yellow-b: 70;
+  
+  /* Pink: #F6439E */
+  --color-accent-pink-r: 246;
+  --color-accent-pink-g: 67;
+  --color-accent-pink-b: 158;
+  
+  /* Purple: #AC38FF */
+  --color-accent-purple-r: 172;
+  --color-accent-purple-g: 56;
+  --color-accent-purple-b: 255;
+  
+  /* Blue: #3131FF */
+  --color-accent-blue-r: 49;
+  --color-accent-blue-g: 49;
+  --color-accent-blue-b: 255;
+
+  /* Orange: #FC8003 */
+  --color-accent-orange-r: 252;
+  --color-accent-orange-g: 128;
+  --color-accent-orange-b: 3;
+  
+  /* Common background patterns */
+  --noise-texture: url('https://img.freepik.com/premium-vector/seamless-pixelated-tv-noise-texture-white-noise-signal-grain-television-screen-interferences_497399-920.jpg');
+  --crt-tile-texture: url('/images/crt-tile-bw.png');
+  
+  /* Common shadow values */
+  --shadow-black-10: rgba(0, 0, 0, 0.1);
+  --shadow-black-25: rgba(0, 0, 0, 0.25);
+  --shadow-black-30: rgba(0, 0, 0, 0.3);
+  --shadow-black-40: rgba(0, 0, 0, 0.4);
+  --shadow-black-50: rgba(0, 0, 0, 0.5);
+  --shadow-black-75: rgba(0, 0, 0, 0.75);
+  --shadow-white-30: rgba(255, 255, 255, 0.3);
+  --shadow-white-50: rgba(255, 255, 255, 0.5);
+  
+  /* Common gradient values */
+  --highlight-gradient: linear-gradient(164deg, rgba(242, 242, 242, 0.60) 0%, rgba(220, 220, 220, 0.60) 20%, rgba(78, 78, 78, 0.60) 40%, rgba(78, 78, 78, 0.60) 55%, rgba(220, 220, 220, 0.60) 82%);
+  --radial-shadow: radial-gradient(100% 80% at 100% 100%, rgba(0, 0, 0, 0.40) 0%, rgba(255, 255, 255, 0.3) 100%);
+}
+
+/* Custom Button Styles */
+@layer components {
+  /* Base button styles that apply to all color variants */
+  .fancy-button {
+    all: unset;
+    position: relative;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    border-radius: 1em; /* Default border-radius */
+    background-color: black;
+    transition: transform 300ms ease;
+    will-change: transform;
+  }
+
+  /* Size-specific border-radius for the main button */
+  .fancy-button.size-xs {
+    border-radius: 0.8em;
+  }
+
+  .fancy-button.size-lg {
+    border-radius: 1.2em;
+  }
+
+  .fancy-button.size-xl {
+    border-radius: 1.4em;
+  }
+
+  /* Default ::after styles - shared structural properties only (no colors) */
+  .fancy-button::after {
+    content: "";
+    position: absolute;
+    top: -0.25em; 
+    left: -0.25em;
+    right: -0.25em;
+    bottom: -0.25em;
+    z-index: -1;
+    border-radius: 1em; /* Default border-radius */
+    transition: transform 300ms ease;
+    will-change: transform;
+  }
+
+  /* Size-specific border-radius for the ::after element */
+  .fancy-button.size-xs::after {
+    border-radius: 0.7em;
+  }
+
+  .fancy-button.size-lg::after {
+    border-radius: 1.3em;
+  }
+
+  .fancy-button.size-xl::after {
+    border-radius: 1.5em;
+  }
+
+  /* Cyan variant */
+  .fancy-button.fancy-button-cyan::after {
+    background: 
+      var(--highlight-gradient),
+      var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-accent-cyan-r), var(--color-accent-cyan-g), var(--color-accent-cyan-b), 0.9) 0%, 
+        rgba(var(--color-accent-cyan-r), var(--color-accent-cyan-g), var(--color-accent-cyan-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-accent-cyan-r), var(--color-accent-cyan-g), var(--color-accent-cyan-b));
+    background-size: cover, cover, cover, 100px, cover;
+    background-position: center, center, center, 0 0, center;
+    background-blend-mode: luminosity, multiply, normal, multiply, normal;
+  }
+
+  /* White variant */
+  .fancy-button.fancy-button-white::after {
+    background: 
+      var(--highlight-gradient),
+      var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-white-r), var(--color-white-g), var(--color-white-b), 0.9) 0%, 
+        rgba(var(--color-white-r), var(--color-white-g), var(--color-white-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-white-r), var(--color-white-g), var(--color-white-b));
+    background-size: cover, cover, cover, 100px, cover;
+    background-position: center, center, center, 0 0, center;
+    background-blend-mode: luminosity, multiply, normal, multiply, normal;
+  }
+
+  /* Grey variant */
+  .fancy-button.fancy-button-grey::after {
+    background: 
+      var(--highlight-gradient),
+      var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-grey-r), var(--color-grey-g), var(--color-grey-b), 0.9) 0%, 
+        rgba(var(--color-grey-r), var(--color-grey-g), var(--color-grey-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-grey-r), var(--color-grey-g), var(--color-grey-b));
+    background-size: cover, cover, cover, 100px, cover;
+    background-position: center, center, center, 0 0, center;
+    background-blend-mode: luminosity, multiply, normal, screen, normal;
+  }
+
+  /* Black variant */
+  .fancy-button.fancy-button-black::after {
+    background: 
+      var(--highlight-gradient),
+      var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-black-r), var(--color-black-g), var(--color-black-b), 0.9) 0%, 
+        rgba(var(--color-black-r), var(--color-black-g), var(--color-black-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-black-r), var(--color-black-g), var(--color-black-b));
+    background-size: cover, cover, cover, 100px, cover;
+    background-position: center, center, center, 0 0, center;
+    background-blend-mode: luminosity, multiply, normal, screen, normal;
+  }
+
+  /* Yellow variant */
+  .fancy-button.fancy-button-yellow::after {
+    background: 
+      var(--highlight-gradient),
+      var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-accent-yellow-r), var(--color-accent-yellow-g), var(--color-accent-yellow-b), 0.9) 0%, 
+        rgba(var(--color-accent-yellow-r), var(--color-accent-yellow-g), var(--color-accent-yellow-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-accent-yellow-r), var(--color-accent-yellow-g), var(--color-accent-yellow-b));
+    background-size: cover, cover, cover, 100px, cover;
+    background-position: center, center, center, 0 0, center;
+    background-blend-mode: luminosity, multiply, normal, multiply, normal;
+  }
+
+  /* Pink variant */
+  .fancy-button.fancy-button-pink::after {
+    background: 
+      var(--highlight-gradient),
+      var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-accent-pink-r), var(--color-accent-pink-g), var(--color-accent-pink-b), 0.9) 0%, 
+        rgba(var(--color-accent-pink-r), var(--color-accent-pink-g), var(--color-accent-pink-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-accent-pink-r), var(--color-accent-pink-g), var(--color-accent-pink-b));
+    background-size: cover, cover, cover, 100px, cover;
+    background-position: center, center, center, 0 0, center;
+    background-blend-mode: luminosity, multiply, normal, screen, normal;
+  }
+
+  /* Purple variant */
+  .fancy-button.fancy-button-purple::after {
+    background: 
+      var(--highlight-gradient),
+      var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-accent-purple-r), var(--color-accent-purple-g), var(--color-accent-purple-b), 0.9) 0%, 
+        rgba(var(--color-accent-purple-r), var(--color-accent-purple-g), var(--color-accent-purple-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-accent-purple-r), var(--color-accent-purple-g), var(--color-accent-purple-b));
+    background-size: cover, cover, cover, 100px, cover;
+    background-position: center, center, center, 0 0, center;
+    background-blend-mode: luminosity, multiply, normal, screen, normal;
+  }
+
+  /* Blue variant */
+  .fancy-button.fancy-button-blue::after {
+    background: 
+      var(--highlight-gradient),
+      var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-accent-blue-r), var(--color-accent-blue-g), var(--color-accent-blue-b), 0.9) 0%, 
+        rgba(var(--color-accent-blue-r), var(--color-accent-blue-g), var(--color-accent-blue-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-accent-blue-r), var(--color-accent-blue-g), var(--color-accent-blue-b));
+    background-size: cover, cover, cover, 100px, cover;
+    background-position: center, center, center, 0 0, center;
+    background-blend-mode: luminosity, multiply, normal, screen, normal;
+  }
+
+  /* Gradient variant */
+  .fancy-button.fancy-button-gradient::after {
+    background: 
+      var(--highlight-gradient),
+      var(--radial-shadow), 
+      linear-gradient(69deg, 
+        rgba(var(--color-accent-orange-r), var(--color-accent-orange-g), var(--color-accent-orange-b), 0.9) -0.01%, 
+        rgba(var(--color-accent-pink-r), var(--color-accent-pink-g), var(--color-accent-pink-b), 0.9) 25%, 
+        rgba(var(--color-accent-purple-r), var(--color-accent-purple-g), var(--color-accent-purple-b), 0.9) 51%, 
+        rgba(var(--color-accent-blue-r), var(--color-accent-blue-g), var(--color-accent-blue-b), 0.9) 77.5%, 
+        rgba(var(--color-accent-cyan-r), var(--color-accent-cyan-g), var(--color-accent-cyan-b), 0.9) 100%),  
+      var(--noise-texture) repeat;
+    background-size: cover, cover, cover, 100px;
+    background-position: center, center, center, 0 0;
+    background-blend-mode: luminosity, multiply, normal, screen;
+  }
+
+  /* Button inner styles for all variants */
+  .button-inner {
+    position: relative;
+    z-index: 1;
+    border-radius: 0.8em;
+    background: var(--bg-color, 
+      var(--radial-shadow), 
+      linear-gradient(0deg, rgba(15, 255, 248, 0.9) 0%, rgba(15, 255, 248, 0.9) 100%),  
+      var(--noise-texture) repeat,
+      #0FFFF8);
+    background-size: cover, cover, 100px, cover;
+    background-position: center, center, 0 0, center;
+    background-blend-mode: multiply, normal, multiply, normal;
+    transition: box-shadow 300ms ease, clip-path 250ms ease, background-image 250ms ease, transform 250ms ease;
+    will-change: box-shadow, clip-path, background-image, transform;
+    overflow: clip;
+    clip-path: inset(0 0 0 0 round 0.8em);
+    box-shadow:
+      0 0 0.05em 0.05em inset var(--shadow-black-10),
+      -0.12em -0.12em 0.12em 0 inset var(--shadow-black-50),
+      0 0 0 0 inset var(--shadow-black-50),
+      0.4em 0.4em 0.4em inset var(--shadow-white-50),
+      -0.4em -0.4em 0.4em 0.1em inset var(--shadow-black-50);
+  }
+
+  /* Disabled state overlay */
+  .fancy-button.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .fancy-button.disabled::before {
+    content: "";
+    position: absolute;
+    top: -0.25em;
+    left: -0.25em;
+    right: -0.25em;
+    bottom: -0.25em;
+    z-index: 10;
+    border-radius: 1em;
+    background: var(--crt-tile-texture) repeat;
+    background-size: 10px;
+    opacity: 1;
+    transition: opacity 300ms ease;
+    mix-blend-mode: plus-lighter;
+    backdrop-filter: grayscale(1) contrast(2.9) brightness(2);
+    filter: brightness(.7) contrast(0.7);
+  }
+
+  /* Size-specific border-radius for the disabled overlay */
+  .fancy-button.size-xs.disabled::before {
+    border-radius: 0.7em;
+  }
+
+  .fancy-button.size-lg.disabled::before {
+    border-radius: 1.3em;
+  }
+
+  .fancy-button.size-xl.disabled::before {
+    border-radius: 1.5em;
+  }
+
+  /* Disabled state for the button inner */
+  .fancy-button.disabled .button-inner {
+    opacity: 0.7;
+  }
+
+  /* Disabled state for the button outer */
+  .fancy-button.disabled .button-outer {
+    box-shadow: 
+      0 0 0.1em 0 var(--shadow-black-25),
+      0.05em 0.1em 0.1em -0.01em var(--shadow-black-50);
+  }
+
+  /* Size-specific clip-path for button inner */
+  .fancy-button.size-xs .button-inner {
+    clip-path: inset(0 0 0 0 round 0.6em);
+  }
+
+  .fancy-button.size-lg .button-inner {
+    clip-path: inset(0 0 0 0 round 1em);
+  }
+
+  .fancy-button.size-xl .button-inner {
+    clip-path: inset(0 0 0 0 round 1em);
+    border-radius: 1.05em;
+  }
+
+  /* Hover effects for the button inner */
+  .fancy-button:hover .button-inner {
+    clip-path: inset(clamp(1px, 0.0em, 2px) clamp(1px, 0.0em, 2px) clamp(1px, 0.0em, 2px) clamp(1px, 0.0em, 2px) round 0.8em);
+    box-shadow:
+      0.1em 0.15em 0.05em 0 inset var(--shadow-black-75),
+      -0.025em -0.03em 0.05em 0.025em inset var(--shadow-black-50),
+      0.25em 0.25em 0.2em 0 inset var(--shadow-black-50),
+      0 0 0.45em 0.5em inset var(--shadow-black-30),
+      -0.075em -0.25em 0.25em 0.1em inset var(--shadow-black-50);
+  }
+
+  /* Size-specific hover clip-path for button inner */
+  .fancy-button.size-xs:hover .button-inner {
+    clip-path: inset(clamp(1px, 0.0em, 2px) clamp(1px, 0.0em, 2px) clamp(1px, 0.0em, 2px) clamp(1px, 0.0em, 2px) round 0.6em);
+  }
+
+  .fancy-button.size-lg:hover .button-inner {
+    clip-path: inset(clamp(1px, 0.0em, 2px) clamp(1px, 0.0em, 2px) clamp(1px, 0.0em, 2px) clamp(1px, 0.0em, 2px) round 1em);
+  }
+
+  .fancy-button.size-xl:hover .button-inner {
+    clip-path: inset(clamp(1px, 0.0em, 2px) clamp(1px, 0.0em, 2px) clamp(1px, 0.0em, 2px) clamp(1px, 0.0em, 2px) round 1em);
+  }
+
+  /* Active effects for the button inner */
+  .fancy-button:active .button-inner {
+    transform: scale(0.97);
+  }
+
+  /* Outer button styles - applies to all variants */
+  .button-outer {
+    position: relative;
+    z-index: 1;
+    border-radius: 0.9em;
+    transition: box-shadow 300ms ease, transform 250ms ease;
+    will-change: box-shadow, transform;
+    box-shadow: 
+      0 0 0.2em 0 var(--shadow-black-25),
+      0.15em 0.3em 0.3em -0.01em var(--shadow-black-50);
+    background: black;
+  }
+
+  /* Size-specific border-radius for the button-outer */
+  .fancy-button.size-xs .button-outer {
+    border-radius: 0.55em;
+  }
+
+  .fancy-button.size-sm .button-outer {
+    border-radius: 0.75em;
+  }
+
+  .fancy-button.size-lg .button-outer {
+    border-radius: 1.15em;
+  }
+
+  .fancy-button.size-xl .button-outer {
+    border-radius: 1.35em;
+  }
+
+  /* Hover effects for the button outer - applies to all variants */
+  .fancy-button:hover .button-outer {
+    box-shadow: 
+      0 0 0.2em 0 var(--shadow-black-25), 
+      0 0 0.1em -0.01em var(--shadow-black-25);
+  }
+
+  /* Color variant specific .button-inner backgrounds */
+  .fancy-button-cyan .button-inner {
+    --bg-color: var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-accent-cyan-r), var(--color-accent-cyan-g), var(--color-accent-cyan-b), 0.9) 0%, 
+        rgba(var(--color-accent-cyan-r), var(--color-accent-cyan-g), var(--color-accent-cyan-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-accent-cyan-r), var(--color-accent-cyan-g), var(--color-accent-cyan-b));
+  }
+
+  .fancy-button-white .button-inner {
+    --bg-color: var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-white-r), var(--color-white-g), var(--color-white-b), 0.9) 0%, 
+        rgba(var(--color-white-r), var(--color-white-g), var(--color-white-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-white-r), var(--color-white-g), var(--color-white-b));
+  }
+
+  .fancy-button-grey .button-inner {
+    --bg-color: var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-grey-r), var(--color-grey-g), var(--color-grey-b), 0.9) 0%, 
+        rgba(var(--color-grey-r), var(--color-grey-g), var(--color-grey-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-grey-r), var(--color-grey-g), var(--color-grey-b));
+    background-blend-mode: multiply, normal, screen, normal;
+  }
+
+  .fancy-button-black .button-inner {
+    --bg-color: var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-black-r), var(--color-black-g), var(--color-black-b), 0.9) 0%, 
+        rgba(var(--color-black-r), var(--color-black-g), var(--color-black-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-black-r), var(--color-black-g), var(--color-black-b));
+    background-blend-mode: multiply, normal, screen, normal;
+  }
+
+  .fancy-button-yellow .button-inner {
+    --bg-color: var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-accent-yellow-r), var(--color-accent-yellow-g), var(--color-accent-yellow-b), 0.9) 0%, 
+        rgba(var(--color-accent-yellow-r), var(--color-accent-yellow-g), var(--color-accent-yellow-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-accent-yellow-r), var(--color-accent-yellow-g), var(--color-accent-yellow-b));
+  }
+
+  .fancy-button-pink .button-inner {
+    --bg-color: var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-accent-pink-r), var(--color-accent-pink-g), var(--color-accent-pink-b), 0.9) 0%, 
+        rgba(var(--color-accent-pink-r), var(--color-accent-pink-g), var(--color-accent-pink-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-accent-pink-r), var(--color-accent-pink-g), var(--color-accent-pink-b));
+    background-blend-mode: multiply, normal, screen, normal;
+  }
+
+  .fancy-button-purple .button-inner {
+    --bg-color: var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-accent-purple-r), var(--color-accent-purple-g), var(--color-accent-purple-b), 0.9) 0%, 
+        rgba(var(--color-accent-purple-r), var(--color-accent-purple-g), var(--color-accent-purple-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-accent-purple-r), var(--color-accent-purple-g), var(--color-accent-purple-b));
+    background-blend-mode: multiply, normal, screen, normal;
+  }
+
+  .fancy-button-blue .button-inner {
+    --bg-color: var(--radial-shadow), 
+      linear-gradient(0deg, 
+        rgba(var(--color-accent-blue-r), var(--color-accent-blue-g), var(--color-accent-blue-b), 0.9) 0%, 
+        rgba(var(--color-accent-blue-r), var(--color-accent-blue-g), var(--color-accent-blue-b), 0.9) 100%),  
+      var(--noise-texture) repeat,
+      rgb(var(--color-accent-blue-r), var(--color-accent-blue-g), var(--color-accent-blue-b));
+    background-blend-mode: multiply, normal, screen, normal;
+  }
+
+  .fancy-button-gradient .button-inner {
+    --bg-color: var(--radial-shadow), 
+      linear-gradient(69deg, 
+        rgba(var(--color-accent-orange-r), var(--color-accent-orange-g), var(--color-accent-orange-b), 0.9) -0.01%, 
+        rgba(var(--color-accent-pink-r), var(--color-accent-pink-g), var(--color-accent-pink-b), 0.9) 25%, 
+        rgba(var(--color-accent-purple-r), var(--color-accent-purple-g), var(--color-accent-purple-b), 0.9) 51%, 
+        rgba(var(--color-accent-blue-r), var(--color-accent-blue-g), var(--color-accent-blue-b), 0.9) 77.5%, 
+        rgba(var(--color-accent-cyan-r), var(--color-accent-cyan-g), var(--color-accent-cyan-b), 0.9) 100%),  
+      var(--noise-texture) repeat;
+    background-blend-mode: multiply, normal, screen;
+  }
+}
