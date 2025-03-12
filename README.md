@@ -16,7 +16,7 @@ A highly customizable, modern button component for React applications with beaut
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/fancybutton.git
+git clone https://github.com/CamDuncalfe/fancybutton.git
 cd fancybutton
 npm install
 ```
